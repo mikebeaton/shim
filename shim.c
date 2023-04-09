@@ -1581,26 +1581,27 @@ shim_fini(void)
 extern EFI_STATUS
 efi_main(EFI_HANDLE passed_image_handle, EFI_SYSTEM_TABLE *passed_systab);
 
-static void
+//static
+void
 __attribute__((__optimize__("0")))
 debug_hook(void)
 {
-	UINT8 *data = NULL;
-	UINTN dataSize = 0;
-	EFI_STATUS efi_status;
+	// UINT8 *data = NULL;
+	// UINTN dataSize = 0;
+	// EFI_STATUS efi_status;
 	register volatile UINTN x = 0;
 	extern char _text, _data;
 
 	if (x)
 		return;
 
-	efi_status = get_variable(DEBUG_VAR_NAME, &data, &dataSize,
-				  SHIM_LOCK_GUID);
-	if (EFI_ERROR(efi_status)) {
-		return;
-	}
+	// efi_status = get_variable(DEBUG_VAR_NAME, &data, &dataSize,
+	// 			  SHIM_LOCK_GUID);
+	// if (EFI_ERROR(efi_status)) {
+	// 	return;
+	// }
 
-	FreePool(data);
+	// FreePool(data);
 
 	console_print(L"add-symbol-file "DEBUGDIR
 		      L"shim" EFI_ARCH L".efi.debug 0x%08x -s .data 0x%08x\n",

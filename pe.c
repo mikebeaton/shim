@@ -102,6 +102,12 @@ relocate_coff (PE_COFF_LOADER_IMAGE_CONTEXT *context,
 	if (Adjust == 0)
 		return EFI_SUCCESS;
 
+	console_print(L"%x %x %x\n",
+			RelocBase,
+			RelocBaseEnd,
+			Adjust
+		);
+
 	while (RelocBase < RelocBaseEnd) {
 		Reloc = (UINT16 *) ((char *) RelocBase + sizeof (EFI_IMAGE_BASE_RELOCATION));
 
@@ -1273,6 +1279,15 @@ handle_image (void *data, unsigned int datasize,
 			/* If it has nonzero sizes, and our bounds check
 			 * made sense, and the VA and size match RelocDir's
 			 * versions, then we believe in this section table. */
+			console_print(L"%x %x %x %x %x %x\n",
+					Section->SizeOfRawData,
+					Section->Misc.VirtualSize,
+					base,
+					end,
+					RelocBase,
+					RelocBaseEnd
+				);
+
 			if (Section->SizeOfRawData &&
 					Section->Misc.VirtualSize &&
 					base && end &&
