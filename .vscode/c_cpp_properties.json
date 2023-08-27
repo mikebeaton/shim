@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "name": "mike",
+      "defines": [
+        "OVERRIDE_SECURITY_POLICY",
+      ],
+    }
+  ],
+  "version": 4
+}

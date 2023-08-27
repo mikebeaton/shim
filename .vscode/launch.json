@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "OC gdb",
+            "type": "cppdbg",
+            "request": "launch",
+            "targetArchitecture": "x64",
+            "program": "${workspaceFolder}/Debug/GdbSyms/Bin/X64_GCC5/GdbSyms.debug",
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "stopAtEntry": true,
+            "setupCommands": [
+                {"text": "set arch i386:x86-64:intel"},
+                {"text": "symbol-file ${workspaceFolder}/Debug/GdbSyms/Bin/X64_GCC5/GdbSyms.debug"},
+                {"text": "target remote localhost:8864"},
+                {"text": "source ${workspaceFolder}/Debug/Scripts/gdb_uefi.py"},
+                {"text": "reload-uefi"},
+                {"text": "add-symbol-file /Users/mjsbeaton/shim_root/usr/lib/debug/boot/efi/EFI/OC/shimx64.efi.debug 0x0508A000 -s .data 0x05137000"},
+                {"text": "set output-radix 16"},
+            ],
+            "launchCompleteCommand": "exec-continue",
+            "logging": {
+                "engineLogging": false,
+                "trace": true,
+                "traceResponse": true
+            }
+        },
+    ]
+}

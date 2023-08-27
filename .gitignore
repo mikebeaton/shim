@@ -50,3 +50,7 @@ shim_cert.h
 !/test-data/
 /test-random.h
 version.c
+/Debug/
+/.vscode/
+/buildid
+._*
